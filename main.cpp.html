@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bbb529;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+.s4 { color: #808080;}
+.s5 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">#include </span><span class="s2">&lt;iostream&gt;</span>
+<span class="s3">using namespace </span><span class="s1">std</span><span class="s3">;</span>
+
+<span class="s3">class </span><span class="s1">LLData {</span>
+<span class="s3">private</span><span class="s1">:</span>
+    <span class="s3">int </span><span class="s1">data</span><span class="s3">;</span>
+    <span class="s1">LLData *next</span><span class="s3">;</span>
+    <span class="s1">LLData *prev</span><span class="s3">;</span>
+    <span class="s1">LLData() {}</span>
+<span class="s3">public</span><span class="s1">:</span>
+    <span class="s1">LLData(</span><span class="s3">int </span><span class="s1">d</span><span class="s3">, </span><span class="s1">LLData *nxt</span><span class="s3">, </span><span class="s1">LLData *prv) {</span>
+        <span class="s1">data = d</span><span class="s3">;</span>
+        <span class="s1">next = nxt</span><span class="s3">;</span>
+        <span class="s1">prev = prv</span><span class="s3">;</span>
+    <span class="s1">}</span>
+    <span class="s3">int </span><span class="s1">getData() { </span><span class="s3">return </span><span class="s1">data</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s1">LLData* getNext() { </span><span class="s3">return </span><span class="s1">next</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s1">LLData* getPrev() { </span><span class="s3">return </span><span class="s1">prev</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">setData(</span><span class="s3">int </span><span class="s1">d) { data = d</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">setNext(LLData* nxt) { next = nxt</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">setPrev(LLData* prv) { prev = prv</span><span class="s3">; </span><span class="s1">}</span>
+<span class="s1">}</span><span class="s3">;</span>
+
+<span class="s3">class </span><span class="s1">LinkedList {</span>
+<span class="s3">private</span><span class="s1">:</span>
+    <span class="s1">LLData* first</span><span class="s3">;</span>
+    <span class="s1">LLData* last</span><span class="s3">;</span>
+<span class="s3">public</span><span class="s1">:</span>
+    <span class="s1">LinkedList() { first = NULL</span><span class="s3">; </span><span class="s1">last = NULL</span><span class="s3">;</span><span class="s1">}</span>
+    <span class="s1">LLData *getFirst() { </span><span class="s3">return </span><span class="s1">first</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s1">LLData *getLast() { </span><span class="s3">return </span><span class="s1">last</span><span class="s3">; </span><span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">addItem(</span><span class="s3">int </span><span class="s1">d) {</span>
+        <span class="s1">first = </span><span class="s3">new </span><span class="s1">LLData(d</span><span class="s3">,</span><span class="s1">first</span><span class="s3">, nullptr</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s3">if </span><span class="s1">(first-&gt;getNext() != </span><span class="s3">nullptr</span><span class="s1">){</span>
+            <span class="s1">first-&gt;getNext()-&gt;setPrev(first)</span><span class="s3">;</span>
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">showList() {</span>
+        <span class="s1">LLData *curr = getFirst()</span><span class="s3">;</span>
+        <span class="s3">while </span><span class="s1">(curr != NULL) {</span>
+            <span class="s1">cout &lt;&lt; curr-&gt;getData() &lt;&lt; </span><span class="s2">&quot; -&gt; &quot;</span><span class="s3">;</span>
+            <span class="s1">curr = curr-&gt;getNext()</span><span class="s3">;</span>
+        <span class="s1">}</span>
+        <span class="s1">cout &lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">showReverseList() {</span>
+        <span class="s1">LLData *curr = getLast()</span><span class="s3">;</span>
+        <span class="s3">while </span><span class="s1">(curr != NULL) {</span>
+            <span class="s1">cout &lt;&lt; curr-&gt;getData() &lt;&lt; </span><span class="s2">&quot; -&gt; &quot;</span><span class="s3">;</span>
+            <span class="s1">curr = curr-&gt;getPrev()</span><span class="s3">;</span>
+        <span class="s1">}</span>
+        <span class="s1">cout &lt;&lt; endl</span><span class="s3">;</span>
+
+    <span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">addItemAtEnd(</span><span class="s3">int </span><span class="s1">d) {</span>
+        <span class="s3">if </span><span class="s1">(first == NULL) {</span>
+            <span class="s1">first = </span><span class="s3">new </span><span class="s1">LLData(d</span><span class="s3">, nullptr, nullptr</span><span class="s1">)</span><span class="s3">;</span>
+            <span class="s4">//first-&gt;setNext(last);</span>
+            <span class="s4">//last-&gt;setPrev(first);</span>
+            <span class="s1">last = </span><span class="s3">new </span><span class="s1">LLData(d</span><span class="s3">, nullptr, nullptr</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">}</span>
+        <span class="s3">else </span><span class="s1">{</span>
+            <span class="s1">LLData* curr = first</span><span class="s3">;</span>
+            <span class="s3">while </span><span class="s1">(curr-&gt;getNext() != NULL) {</span>
+                <span class="s1">curr = curr-&gt;getNext()</span><span class="s3">;</span>
+            <span class="s1">}</span>
+            <span class="s1">curr-&gt;setNext(</span><span class="s3">new </span><span class="s1">LLData(d</span><span class="s3">, nullptr,</span><span class="s1">curr))</span><span class="s3">;</span>
+            <span class="s1">last = </span><span class="s3">new </span><span class="s1">LLData(d</span><span class="s3">, nullptr,</span><span class="s1">curr)</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s3">void </span><span class="s1">deleteItem(</span><span class="s3">int </span><span class="s1">num){</span>
+        <span class="s1">LLData* curr = first</span><span class="s3">;</span>
+        <span class="s3">while </span><span class="s1">(curr != NULL){</span>
+            <span class="s3">if </span><span class="s1">(curr-&gt;getData() == num){</span>
+                <span class="s3">if </span><span class="s1">(curr-&gt;getPrev() == </span><span class="s3">nullptr</span><span class="s1">){</span>
+                    <span class="s1">curr-&gt;getNext()-&gt;setPrev(</span><span class="s3">nullptr</span><span class="s1">)</span><span class="s3">;</span>
+                    <span class="s1">first = curr-&gt;getNext()</span><span class="s3">;</span>
+                    <span class="s3">delete </span><span class="s1">curr</span><span class="s3">;</span>
+                    <span class="s3">break;</span>
+                <span class="s1">}</span>
+                <span class="s3">if </span><span class="s1">(curr-&gt;getNext() == </span><span class="s3">nullptr</span><span class="s1">){</span>
+                    <span class="s1">curr-&gt;getPrev()-&gt;setNext(</span><span class="s3">nullptr</span><span class="s1">)</span><span class="s3">;</span>
+                    <span class="s1">last = curr-&gt;getPrev()</span><span class="s3">;</span>
+                    <span class="s3">delete </span><span class="s1">curr</span><span class="s3">;</span>
+                    <span class="s3">break;</span>
+                <span class="s1">}</span>
+                <span class="s3">if </span><span class="s1">(curr-&gt;getPrev() != </span><span class="s3">nullptr </span><span class="s1">&amp;&amp; curr-&gt;getNext() != </span><span class="s3">nullptr</span><span class="s1">){</span>
+                    <span class="s1">curr-&gt;getNext()-&gt;setPrev(curr-&gt;getPrev())</span><span class="s3">;</span>
+                    <span class="s1">curr-&gt;getPrev()-&gt;setNext(curr-&gt;getNext())</span><span class="s3">;</span>
+                    <span class="s3">if </span><span class="s1">(curr-&gt;getNext()-&gt;getNext() == </span><span class="s3">nullptr</span><span class="s1">){</span>
+                        <span class="s1">last = curr-&gt;getNext()</span><span class="s3">;</span>
+                    <span class="s1">}</span>
+                    <span class="s3">delete </span><span class="s1">curr</span><span class="s3">;</span>
+                    <span class="s3">break;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+            <span class="s1">curr = curr-&gt;getNext()</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span><span class="s3">;</span>
+
+<span class="s3">int </span><span class="s1">main() {</span>
+    <span class="s1">LinkedList myList</span><span class="s3">;</span>
+    <span class="s1">myList.addItemAtEnd(</span><span class="s5">1</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.addItemAtEnd(</span><span class="s5">4</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.addItem(</span><span class="s5">17</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.addItem(</span><span class="s5">3</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.addItemAtEnd(</span><span class="s5">12</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.addItemAtEnd(</span><span class="s5">11</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.showList()</span><span class="s3">;</span>
+    <span class="s1">myList.showReverseList()</span><span class="s3">;</span>
+    <span class="s1">myList.showList()</span><span class="s3">;</span>
+    <span class="s1">myList.deleteItem(</span><span class="s5">3</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.showList()</span><span class="s3">;</span>
+    <span class="s1">myList.addItem(</span><span class="s5">11</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.deleteItem(</span><span class="s5">11</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.deleteItem(</span><span class="s5">12</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.deleteItem(</span><span class="s5">17</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">myList.deleteItem(</span><span class="s5">4</span><span class="s1">)</span><span class="s3">;</span>
+
+    <span class="s1">myList.showList()</span><span class="s3">;</span>
+    <span class="s1">myList.showReverseList()</span><span class="s3">;</span>
+    <span class="s1">cout &lt;&lt; myList.getFirst()-&gt;getData() &lt;&lt; </span><span class="s2">&quot; &quot; </span><span class="s1">&lt;&lt; myList.getLast()-&gt;getData()</span><span class="s3">;</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
